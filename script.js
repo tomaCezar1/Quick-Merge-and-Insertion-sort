@@ -1,5 +1,5 @@
 // let items = [5, 3, 7, 6, 2, 9];
-let items = [...Array(50)].map(() => Math.floor(Math.random() * 90));
+let items = [...Array(5000)].map(() => Math.floor(Math.random() * 90));
 
 
 //Quick Sort
@@ -84,5 +84,26 @@ function mergeSort(arr) {
 
 
 //Insertion Sort
+const insertionSort = (array) => {
+    const length = array.length;
 
+    for (let i = 1; i < length; i++) { //loop through array
+        let key = array[i]; //set first element as key
+        let j = i - 1;      //set the previous element of key
+        while (j >= 0 && array[j] > key) {
+            array[j + 1] = array[j];
+            j = j - 1;
+        }
+        //j>=0 is necessary since the first element is 'sorted'
+        //we compare the previous element with key, and swap if greater
+        array[j+1] = key;
+    }
+    return array;
+};
+
+const t5 = performance.now();
+const sortedArray3 = insertionSort(items);
+const t6 = performance.now();
+console.log(sortedArray3);
+console.log(`Time taken : ${t6-t5} ms`);
 
